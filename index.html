@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logie's Digital Portfolio</title>
+
+    <!-- Modern Geometric / Tech Google Font (Orbitron / Syne) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;800;900&family=Syne:ital,wght@0,700;0,800;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Link to External CSS file -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- ==================== INTRO SECTION ==================== -->
+    <header id="intro">
+      <main class="intro_container">
+        <!-- Top Watermark (Marquee Left) -->
+        <div class="intro_watermark intro_section_top_watermark" aria-hidden="true">
+          <div class="intro_marquee_track intro_scroll_left">
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+          </div>
+          <div class="intro_marquee_track intro_scroll_left" aria-hidden="true">
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+            <span>LOGIE MENDIOLA &nbsp;</span>
+          </div>
+        </div>
+
+        <!-- Bottom Watermark (Marquee Right) -->
+        <div class="intro_watermark intro_section_bottom_watermark" aria-hidden="true">
+          <div class="intro_marquee_track intro_scroll_right">
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+          </div>
+          <div class="intro_marquee_track intro_scroll_right" aria-hidden="true">
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+            <span>MENDIOLA LOGIE &nbsp;</span>
+          </div>
+        </div>
+
+        <!-- Intro Center Section -->
+        <div class="intro_section_center">
+          <h1 class="intro_section_center_header">
+            <span class="typewriter_line">
+              <span id="intro_typewriter_line1"></span><span id="cursor_line1" class="cursor">|</span>
+            </span>
+            <br />
+            <span class="typewriter_line">
+              <span id="intro_typewriter_line2"></span><span id="cursor_line2" class="cursor hidden">|</span>
+            </span>
+          </h1>
+
+          <!-- Intro Explore Button Navigation -->
+          <a href="#home" class="intro_explore_btn">EXPLORE</a>
+        </div>
+      </main>
+    </header>
+
+    <!-- ==================== HOME SECTION ==================== -->
+    <section id="home" class="home_container">
+      <!-- Centered Navigation Pill Bar -->
+      <nav class="home_navbar">
+        <ul class="home_nav_list">
+          <li><a href="#home" class="home_nav_link active">HOME</a></li>
+          <li><a href="#about" class="home_nav_link">ABOUT</a></li>
+          <li><a href="#work" class="home_nav_link">WORK</a></li>
+          <li><a href="#skills" class="home_nav_link">SKILLS</a></li>
+          <li><a href="#projects" class="home_nav_link">PROJECTS</a></li>
+          <li><a href="#contact" class="home_nav_link">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main Home Split Content -->
+      <div class="home_content_wrapper">
+        <!-- Left Side: Intro & Socials -->
+        <div class="home_details_column">
+          <!-- Hi, I'm Logie Mendiola -->
+          <h2 class="home_greeting">
+            Hi, I'm <span class="home_name_italic">Logie Mendiola</span>.
+          </h2>
+
+          <!-- SYSTEM DEVELOPER with Typewriter + Thicker Cursor -->
+          <h3 class="home_role_title">
+            <span id="home_role_typewriter"></span><span class="home_cursor_thick"></span>
+          </h3>
+
+          <!-- Resume Button (Triggers PDF Preview Modal) -->
+          <div class="home_cta_group">
+            <button type="button" class="home_resume_btn" id="open_resume_modal">View Resume</button>
+          </div>
+
+          <!-- Social Media Outlines with exact profile links -->
+          <div class="home_socials_group">
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/logie-mendiola-229374225/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home_social_item"
+              aria-label="LinkedIn"
+            >
+              <div class="home_social_icon_box">
+                <svg viewBox="0 0 24 24" class="social_svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </div>
+              <span class="home_social_label">Linkedin</span>
+            </a>
+
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/lex.mendiola.5"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home_social_item"
+              aria-label="Facebook"
+            >
+              <div class="home_social_icon_box">
+                <svg viewBox="0 0 24 24" class="social_svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </div>
+              <span class="home_social_label">Facebook</span>
+            </a>
+
+            <!-- GitHub -->
+            <a
+              href="https://github.com/lamendiola07"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home_social_item"
+              aria-label="GitHub"
+            >
+              <div class="home_social_icon_box">
+                <svg viewBox="0 0 24 24" class="social_svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </div>
+              <span class="home_social_label">Github</span>
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/tatsu.ghierii/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home_social_item"
+              aria-label="Instagram"
+            >
+              <div class="home_social_icon_box">
+                <svg viewBox="0 0 24 24" class="social_svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <span class="home_social_label">Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Reserved Area for the 3D / React Lanyard -->
+        <div class="home_lanyard_column">
+          <div class="home_lanyard_container">
+            <div class="lanyard_strap_mockup"></div>
+            <div class="lanyard_circle_mockup"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RESUME PREVIEW MODAL ==================== -->
+    <div id="resume_modal" class="modal_overlay" aria-hidden="true">
+      <div class="modal_content">
+        <div class="modal_header">
+          <h4 class="modal_title">Logie Mendiola — Resume</h4>
+          <div class="modal_actions">
+            <a href="Mendiola,Logie_Resume.pdf" download="Mendiola,Logie_Resume.pdf" class="modal_download_btn">
+              Download PDF
+            </a>
+            <button type="button" class="modal_close_btn" id="close_resume_modal" aria-label="Close modal">&times;</button>
+          </div>
+        </div>
+        <div class="modal_body">
+          <iframe src="Mendiola,Logie_Resume.pdf" title="Resume Viewer" class="resume_iframe"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link to External JavaScript file -->
+    <script src="script.js"></script>
+  </body>
+</html>
