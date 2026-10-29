@@ -3,20 +3,6 @@ import './App.css';
 import Threads from './components/Threads';
 import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
-import profilePhoto from './assets/profile.jpg';
-
-// Import Project Images
-import rtpLogo from './public/Projects/RizalThroughPlay/RizalThroughPlay.png';
-import rtpIngame from './public/Projects/RizalThroughPlay/RTP_Ingame.jpeg';
-import dtLogo from './public/Projects/DopplerThings/DopplerThings_Logo.png';
-import dtMenu from './public/Projects/DopplerThings/DopplerThings_Menu.png';
-import dtDemo from './public/Projects/DopplerThings/DopplerThings_Demogorgon.png';
-import dtVecna from './public/Projects/DopplerThings/DopplerThings_Vecna.png';
-
-// Import Certificates (PDFs)
-import certTesting from './public/Certificate/SkillUP_Introduction to Software Testing.pdf';
-import certCisco from './public/Certificate/CCNA_Intro to Networking.pdf';
-import certPython from './public/Certificate/Python Essentials I.pdf';
 
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
@@ -217,7 +203,10 @@ const PROJECTS_DATA = [
     ],
     tags: ['Unity', 'Blender', 'C++', 'Firebase', 'Git'],
     year: '2026',
-    files: [rtpLogo, rtpIngame]
+    files: [
+      '/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
+      '/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
+    ]
   },
   {
     id: 2,
@@ -233,7 +222,12 @@ const PROJECTS_DATA = [
     ],
     tags: ['PyGame', 'Arduino IDE', 'Ultrasonic Sensors'],
     year: '2026',
-    files: [dtLogo, dtMenu, dtDemo, dtVecna]
+    files: [
+      '/assets/Projects/DopplerThings/DopplerThings_Logo.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Menu.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
+    ]
   },
 ];
 
@@ -242,19 +236,19 @@ const CERTIFICATES_DATA = [
     title: 'Introduction to Software Testing',
     issuer: 'Simplilearn',
     date: 'October 11, 2026',
-    file: certTesting
+    file: '/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
   },
   {
     title: 'Introduction to Networks',
     issuer: 'Cisco Networking Academy',
     date: 'September 7, 2026',
-    file: certCisco
+    file: '/assets/Certificate/CCNA_Intro to Networking.pdf'
   },
   {
     title: 'Python Essentials I',
     issuer: 'Polytechnic University of the Philippines',
     date: 'February 5, 2025',
-    file: certPython
+    file: '/assets/Certificate/Python Essentials I.pdf'
   },
 ];
 
