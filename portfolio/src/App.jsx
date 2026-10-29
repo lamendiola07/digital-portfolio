@@ -259,24 +259,28 @@ const AWARDS_DATA = [
     org: 'Saint Francis Institute Learning and Business Highschool Inc.',
     date: '01/12/2021',
     description: 'Awarded for perceptions of Junior High School students on effective teaching strategies towards improved academic performance.',
+    file: ''
   },
   {
     title: 'With High Honors',
     org: 'Saint Francis Institute Learning and Business Highschool Inc.',
     date: '01/12/2020',
     description: 'Recognized for high academic excellence throughout senior/junior high school.',
+    file: ''
   },
   {
     title: 'With Honors',
     org: 'Saint Francis Institute Learning and Business Highschool Inc.',
     date: '2009–2020',
     description: 'Recognized for academic achievement throughout basic education years.',
+    file: ''
   },
   {
     title: 'Dean’s Lister & Academic Recognition',
     org: 'Polytechnic University of the Philippines',
     date: '2022–2026',
     description: 'Consistent academic performance during Bachelor of Science in Computer Engineering studies.',
+    file: ''
   },
 ];
 
@@ -324,6 +328,7 @@ export default function App() {
   const [activeImageIdx, setActiveImageIdx] = useState(0);
 
   const [selectedCert, setSelectedCert] = useState(null);
+  const [selectedAward, setSelectedAward] = useState(null);
 
   const toggleJob = (i) => setOpenJobs((prev) => ({ ...prev, [i]: !prev[i] }));
 
@@ -402,6 +407,7 @@ export default function App() {
     : PROJECTS_DATA.filter(p => p.category.toUpperCase() === projectFilter.toUpperCase());
 
   const renderFilePreview = (filePath, altText) => {
+    if (!filePath) return <div style={{ color: '#aaa', padding: '2rem', textAlign: 'center' }}>No preview media available</div>;
     const isPdf = filePath.toLowerCase().endsWith('.pdf');
     if (isPdf) {
       return (
@@ -441,7 +447,7 @@ export default function App() {
       </div>
 
       <TargetCursor
-        targetSelector=".home_nav_link, .home_resume_btn, .home_social_item, .profile-card__contact, .work_toggle_btn, .contact_submit, .modal_download_btn, .modal_close_btn, .gallery_filter_btn, .gallery_card, .cert_card_action_btn"
+        targetSelector=".home_nav_link, .home_resume_btn, .home_social_item, .profile-card__contact, .work_toggle_btn, .contact_submit, .modal_download_btn, .modal_close_btn, .gallery_filter_btn, .gallery_card, .cert_card_action_btn, .award_view_btn, .award_media_thumb"
         spinDuration={2}
         hoverDuration={0.2}
         size={36}
@@ -853,16 +859,31 @@ export default function App() {
           <div className="awards_highlights_grid">
             {AWARDS_DATA.map((award) => (
               <div className="award_highlight_card" key={award.title}>
-                <div className="award_icon_box">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="8" r="6" />
-                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-                  </svg>
-                </div>
+                {award.file ? (
+                  <div className="award_media_thumb" onClick={() => setSelectedAward(award)}>
+                    {award.file.toLowerCase().endsWith('.pdf') ? (
+                      <iframe src={award.file} title={award.title} />
+                    ) : (
+                      <img src={award.file} alt={award.title} />
+                    )}
+                  </div>
+                ) : (
+                  <div className="award_icon_box">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="8" r="6" />
+                      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                    </svg>
+                  </div>
+                )}
                 <div className="award_content">
                   <h3>{award.title}</h3>
                   <p className="award_org">{award.org} · <span className="award_date">{award.date}</span></p>
                   <p className="award_desc">{award.description}</p>
+                  {award.file && (
+                    <button type="button" className="award_view_btn" onClick={() => setSelectedAward(award)}>
+                      VIEW ATTACHMENT &rarr;
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -1027,6 +1048,38 @@ export default function App() {
             <div className="project_detail_footer">
               <span>ISSUED BY {selectedCert.issuer.toUpperCase()}</span>
               <button type="button" className="modal_footer_close" onClick={() => setSelectedCert(null)}>CLOSE</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AWARD DETAIL POPUP MODAL */}
+      {selectedAward && (
+        <div className="modal_overlay active" onClick={() => setSelectedAward(null)}>
+          <div className="project_detail_modal cert_popup_modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal_header">
+              <div className="modal_dots"><span/><span/><span/></div>
+              <h4 className="modal_title">AWARD_VIEWER // {selectedAward.title}</h4>
+              <button type="button" className="modal_close_btn" onClick={() => setSelectedAward(null)}>&times;</button>
+            </div>
+            
+            <div className="cert_modal_body">
+              {selectedAward.file && (
+                <div className="cert_modal_preview_container">
+                  {renderFilePreview(selectedAward.file, selectedAward.title)}
+                </div>
+              )}
+              <div className="cert_modal_info">
+                <h2>{selectedAward.title}</h2>
+                <p><strong>Organization:</strong> {selectedAward.org}</p>
+                <p><strong>Date:</strong> {selectedAward.date}</p>
+                <p>{selectedAward.description}</p>
+              </div>
+            </div>
+
+            <div className="project_detail_footer">
+              <span>AWARD RECOGNITION</span>
+              <button type="button" className="modal_footer_close" onClick={() => setSelectedAward(null)}>CLOSE</button>
             </div>
           </div>
         </div>
