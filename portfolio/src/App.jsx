@@ -3,6 +3,7 @@ import './App.css';
 import Threads from './components/Threads';
 import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
+import profilePhoto from './assets/profile.jpg';
 
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
