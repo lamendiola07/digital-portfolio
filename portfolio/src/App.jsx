@@ -405,11 +405,16 @@ export default function App() {
     const isPdf = filePath.toLowerCase().includes('.pdf');
     if (isPdf) {
       return (
-        <iframe 
-          src={filePath} 
-          title={altText} 
-          className="modal_pdf_viewer"
-        />
+        <div className="pdf_preview_wrapper">
+          <iframe 
+            src={filePath} 
+            title={altText} 
+            className="modal_pdf_viewer"
+          />
+          <a href={filePath} target="_blank" rel="noreferrer" className="pdf_fallback_link">
+            Open PDF in New Tab &rarr;
+          </a>
+        </div>
       );
     }
     return <img src={filePath} alt={altText} />;
@@ -836,36 +841,28 @@ export default function App() {
           <p className="section_subheading">A collection of academic and professional recognitions that reflect dedication to excellence.</p>
           <div className="section_divider" />
 
-          <div className="dome_gallery_container awards_dome">
-            <div className="dome_gallery_ring">
-              {AWARDS_DATA.map((award, idx) => (
-                <div className="dome_gallery_item award_item" key={award.title}>
-                  <div className="dome_item_preview">
-                    <span>AWARD #{idx + 1}</span>
-                    <h4>{award.title}</h4>
-                    <p>{award.org}</p>
-                  </div>
+          <div className="awards_marquee_container">
+            <div className="awards_marquee_track">
+              {[0, 1].map((copy) => (
+                <div className="awards_marquee_group" key={copy} aria-hidden={copy === 1}>
+                  {AWARDS_DATA.map((award, idx) => (
+                    <div className="award_carousel_card" key={`${award.title}-${copy}`}>
+                      <div className="award_icon_box">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="8" r="6" />
+                          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                        </svg>
+                      </div>
+                      <div className="award_content">
+                        <h3>{award.title}</h3>
+                        <p className="award_org">{award.org} · <span className="award_date">{award.date}</span></p>
+                        <p className="award_desc">{award.description}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="awards_highlights_grid">
-            {AWARDS_DATA.map((award) => (
-              <div className="award_highlight_card" key={award.title}>
-                <div className="award_icon_box">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="8" r="6" />
-                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-                  </svg>
-                </div>
-                <div className="award_content">
-                  <h3>{award.title}</h3>
-                  <p className="award_org">{award.org} · <span className="award_date">{award.date}</span></p>
-                  <p className="award_desc">{award.description}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -932,7 +929,6 @@ export default function App() {
             </div>
             
             <div className="project_detail_body">
-              {/* Left Column: Image / PDF Viewer */}
               <div className="project_modal_left">
                 <div className="modal_img_counter">{activeImageIdx + 1} / {selectedProject.files.length}</div>
                 <div className="modal_main_image">
@@ -965,7 +961,6 @@ export default function App() {
                 )}
               </div>
 
-              {/* Right Column: Heading, Summary, Problem Context, Key Highlights */}
               <div className="project_modal_right">
                 <div className="modal_meta_badge_row">
                   <span className="gallery_card_badge">{selectedProject.category}</span>
