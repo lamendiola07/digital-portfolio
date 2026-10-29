@@ -5,6 +5,11 @@ import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
 import profilePhoto from './assets/profile.jpg';
 
+// Vite helper to resolve local asset files dynamically for production builds
+const getAssetUrl = (path) => {
+  return new URL(path, import.meta.url).href;
+};
+
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
 const EDUCATION = [
@@ -205,8 +210,8 @@ const PROJECTS_DATA = [
     tags: ['Unity', 'Blender', 'C++', 'Firebase', 'Git'],
     year: '2026',
     files: [
-      './src/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
-      './src/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
+      getAssetUrl('./assets/Projects/RizalThroughPlay/RizalThroughPlay.png'),
+      getAssetUrl('./assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg')
     ]
   },
   {
@@ -224,10 +229,10 @@ const PROJECTS_DATA = [
     tags: ['PyGame', 'Arduino IDE', 'Ultrasonic Sensors'],
     year: '2026',
     files: [
-      './src/assets/Projects/DopplerThings/DopplerThings_Logo.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Menu.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
+      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Logo.png'),
+      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Menu.png'),
+      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Demogorgon.png'),
+      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Vecna.png')
     ]
   },
 ];
@@ -237,19 +242,19 @@ const CERTIFICATES_DATA = [
     title: 'Introduction to Software Testing',
     issuer: 'Simplilearn',
     date: 'October 11, 2026',
-    file: './src/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
+    file: getAssetUrl('./assets/Certificate/SkillUP_Introduction to Software Testing.pdf')
   },
   {
     title: 'Introduction to Networks',
     issuer: 'Cisco Networking Academy',
     date: 'September 7, 2026',
-    file: './src/assets/Certificate/CCNA_Intro to Networking.pdf'
+    file: getAssetUrl('./assets/Certificate/CCNA_Intro to Networking.pdf')
   },
   {
     title: 'Python Essentials I',
     issuer: 'Polytechnic University of the Philippines',
     date: 'February 5, 2025',
-    file: './src/assets/Certificate/Python Essentials I.pdf'
+    file: getAssetUrl('./assets/Certificate/Python Essentials I.pdf')
   },
 ];
 
@@ -402,7 +407,7 @@ export default function App() {
     : PROJECTS_DATA.filter(p => p.category.toUpperCase() === projectFilter.toUpperCase());
 
   const renderFilePreview = (filePath, altText) => {
-    const isPdf = filePath.toLowerCase().endsWith('.pdf');
+    const isPdf = filePath.toLowerCase().includes('.pdf');
     if (isPdf) {
       return (
         <iframe 
@@ -758,7 +763,7 @@ export default function App() {
                 onClick={() => { setSelectedProject(proj); setActiveImageIdx(0); }}
               >
                 <div className="gallery_card_image_preview">
-                  {proj.files[0].toLowerCase().endsWith('.pdf') ? (
+                  {proj.files[0].toLowerCase().includes('.pdf') ? (
                     <iframe src={proj.files[0]} title={proj.title} className="card_iframe_preview" />
                   ) : (
                     <img src={proj.files[0]} alt={proj.title} />
@@ -800,7 +805,7 @@ export default function App() {
                   <div className="cert_dots"><span/><span/><span/></div>
                 </div>
                 <div className="cert_img_box">
-                  {cert.file.toLowerCase().endsWith('.pdf') ? (
+                  {cert.file.toLowerCase().includes('.pdf') ? (
                     <iframe src={cert.file} title={cert.title} className="card_iframe_preview" />
                   ) : (
                     <img src={cert.file} alt={cert.title} />
