@@ -3,7 +3,6 @@ import './App.css';
 import Threads from './components/Threads';
 import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
-import profilePhoto from './assets/profile.jpg';
 
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
@@ -615,8 +614,8 @@ export default function App() {
 
             <div className="home_profile_column">
               <ProfileCard
-                avatarUrl={profilePhoto}
-                miniAvatarUrl={profilePhoto}
+                avatarUrl="/assets/profile.jpg"
+                miniAvatarUrl="/assets/profile.jpg"
                 name="Logie Mendiola"
                 title="Quality Assurance Tester"
                 handle="lamendiola07"
