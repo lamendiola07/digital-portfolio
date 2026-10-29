@@ -205,8 +205,8 @@ const PROJECTS_DATA = [
     tags: ['Unity', 'Blender', 'C++', 'Firebase', 'Git'],
     year: '2026',
     files: [
-      '/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
-      '/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
+      './src/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
+      './src/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
     ]
   },
   {
@@ -224,10 +224,10 @@ const PROJECTS_DATA = [
     tags: ['PyGame', 'Arduino IDE', 'Ultrasonic Sensors'],
     year: '2026',
     files: [
-      '/assets/Projects/DopplerThings/DopplerThings_Logo.png',
-      '/assets/Projects/DopplerThings/DopplerThings_Menu.png',
-      '/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
-      '/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
+      './src/assets/Projects/DopplerThings/DopplerThings_Logo.png',
+      './src/assets/Projects/DopplerThings/DopplerThings_Menu.png',
+      './src/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
+      './src/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
     ]
   },
 ];
@@ -237,19 +237,19 @@ const CERTIFICATES_DATA = [
     title: 'Introduction to Software Testing',
     issuer: 'Simplilearn',
     date: 'October 11, 2026',
-    file: '/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
+    file: './src/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
   },
   {
     title: 'Introduction to Networks',
     issuer: 'Cisco Networking Academy',
     date: 'September 7, 2026',
-    file: '/assets/Certificate/CCNA_Intro to Networking.pdf'
+    file: './src/assets/Certificate/CCNA_Intro to Networking.pdf'
   },
   {
     title: 'Python Essentials I',
     issuer: 'Polytechnic University of the Philippines',
     date: 'February 5, 2025',
-    file: '/assets/Certificate/Python Essentials I.pdf'
+    file: './src/assets/Certificate/Python Essentials I.pdf'
   },
 ];
 
@@ -402,19 +402,14 @@ export default function App() {
     : PROJECTS_DATA.filter(p => p.category.toUpperCase() === projectFilter.toUpperCase());
 
   const renderFilePreview = (filePath, altText) => {
-    const isPdf = filePath.toLowerCase().includes('.pdf');
+    const isPdf = filePath.toLowerCase().endsWith('.pdf');
     if (isPdf) {
       return (
-        <div className="pdf_preview_wrapper">
-          <iframe 
-            src={filePath} 
-            title={altText} 
-            className="modal_pdf_viewer"
-          />
-          <a href={filePath} target="_blank" rel="noreferrer" className="pdf_fallback_link">
-            Open PDF in New Tab &rarr;
-          </a>
-        </div>
+        <iframe 
+          src={filePath} 
+          title={altText} 
+          className="modal_pdf_viewer"
+        />
       );
     }
     return <img src={filePath} alt={altText} />;
@@ -763,7 +758,7 @@ export default function App() {
                 onClick={() => { setSelectedProject(proj); setActiveImageIdx(0); }}
               >
                 <div className="gallery_card_image_preview">
-                  {proj.files[0].toLowerCase().includes('.pdf') ? (
+                  {proj.files[0].toLowerCase().endsWith('.pdf') ? (
                     <iframe src={proj.files[0]} title={proj.title} className="card_iframe_preview" />
                   ) : (
                     <img src={proj.files[0]} alt={proj.title} />
@@ -805,7 +800,7 @@ export default function App() {
                   <div className="cert_dots"><span/><span/><span/></div>
                 </div>
                 <div className="cert_img_box">
-                  {cert.file.toLowerCase().includes('.pdf') ? (
+                  {cert.file.toLowerCase().endsWith('.pdf') ? (
                     <iframe src={cert.file} title={cert.title} className="card_iframe_preview" />
                   ) : (
                     <img src={cert.file} alt={cert.title} />
@@ -841,28 +836,36 @@ export default function App() {
           <p className="section_subheading">A collection of academic and professional recognitions that reflect dedication to excellence.</p>
           <div className="section_divider" />
 
-          <div className="awards_marquee_container">
-            <div className="awards_marquee_track">
-              {[0, 1].map((copy) => (
-                <div className="awards_marquee_group" key={copy} aria-hidden={copy === 1}>
-                  {AWARDS_DATA.map((award, idx) => (
-                    <div className="award_carousel_card" key={`${award.title}-${copy}`}>
-                      <div className="award_icon_box">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="8" r="6" />
-                          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-                        </svg>
-                      </div>
-                      <div className="award_content">
-                        <h3>{award.title}</h3>
-                        <p className="award_org">{award.org} · <span className="award_date">{award.date}</span></p>
-                        <p className="award_desc">{award.description}</p>
-                      </div>
-                    </div>
-                  ))}
+          <div className="dome_gallery_container awards_dome">
+            <div className="dome_gallery_ring">
+              {AWARDS_DATA.map((award, idx) => (
+                <div className="dome_gallery_item award_item" key={award.title}>
+                  <div className="dome_item_preview">
+                    <span>AWARD #{idx + 1}</span>
+                    <h4>{award.title}</h4>
+                    <p>{award.org}</p>
+                  </div>
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="awards_highlights_grid">
+            {AWARDS_DATA.map((award) => (
+              <div className="award_highlight_card" key={award.title}>
+                <div className="award_icon_box">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="8" r="6" />
+                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                  </svg>
+                </div>
+                <div className="award_content">
+                  <h3>{award.title}</h3>
+                  <p className="award_org">{award.org} · <span className="award_date">{award.date}</span></p>
+                  <p className="award_desc">{award.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -929,6 +932,7 @@ export default function App() {
             </div>
             
             <div className="project_detail_body">
+              {/* Left Column: Image / PDF Viewer */}
               <div className="project_modal_left">
                 <div className="modal_img_counter">{activeImageIdx + 1} / {selectedProject.files.length}</div>
                 <div className="modal_main_image">
@@ -961,6 +965,7 @@ export default function App() {
                 )}
               </div>
 
+              {/* Right Column: Heading, Summary, Problem Context, Key Highlights */}
               <div className="project_modal_right">
                 <div className="modal_meta_badge_row">
                   <span className="gallery_card_badge">{selectedProject.category}</span>
