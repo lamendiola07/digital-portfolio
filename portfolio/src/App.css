@@ -54,7 +54,7 @@
   height: 220px;
   border: none;
   background: #111;
-  pointer-events: auto; /* allows scrolling/touch interaction on mobile */
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {
@@ -103,7 +103,7 @@
   display: flex;
   gap: 1.5rem;
   width: max-content;
-  animation: scrollAwards 35s linear infinite; /* Adjusted speed: smooth and balanced */
+  animation: scrollAwards 35s linear infinite;
 }
 
 .awards_marquee_track:hover {
