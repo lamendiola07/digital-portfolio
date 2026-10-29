@@ -5,6 +5,19 @@ import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
 import profilePhoto from './assets/profile.jpg';
 
+// Import Project Images
+import rtpLogo from './public/Projects/RizalThroughPlay/RizalThroughPlay.png';
+import rtpIngame from './public/Projects/RizalThroughPlay/RTP_Ingame.jpeg';
+import dtLogo from './public/Projects/DopplerThings/DopplerThings_Logo.png';
+import dtMenu from './public/Projects/DopplerThings/DopplerThings_Menu.png';
+import dtDemo from './public/Projects/DopplerThings/DopplerThings_Demogorgon.png';
+import dtVecna from './public/Projects/DopplerThings/DopplerThings_Vecna.png';
+
+// Import Certificates (PDFs)
+import certTesting from './public/Certificate/SkillUP_Introduction to Software Testing.pdf';
+import certCisco from './public/Certificate/CCNA_Intro to Networking.pdf';
+import certPython from './public/Certificate/Python Essentials I.pdf';
+
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
 const EDUCATION = [
@@ -204,10 +217,7 @@ const PROJECTS_DATA = [
     ],
     tags: ['Unity', 'Blender', 'C++', 'Firebase', 'Git'],
     year: '2026',
-    files: [
-      './src/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
-      './src/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
-    ]
+    files: [rtpLogo, rtpIngame]
   },
   {
     id: 2,
@@ -223,12 +233,7 @@ const PROJECTS_DATA = [
     ],
     tags: ['PyGame', 'Arduino IDE', 'Ultrasonic Sensors'],
     year: '2026',
-    files: [
-      './src/assets/Projects/DopplerThings/DopplerThings_Logo.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Menu.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
-      './src/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
-    ]
+    files: [dtLogo, dtMenu, dtDemo, dtVecna]
   },
 ];
 
@@ -237,19 +242,19 @@ const CERTIFICATES_DATA = [
     title: 'Introduction to Software Testing',
     issuer: 'Simplilearn',
     date: 'October 11, 2026',
-    file: './src/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
+    file: certTesting
   },
   {
     title: 'Introduction to Networks',
     issuer: 'Cisco Networking Academy',
     date: 'September 7, 2026',
-    file: './src/assets/Certificate/CCNA_Intro to Networking.pdf'
+    file: certCisco
   },
   {
     title: 'Python Essentials I',
     issuer: 'Polytechnic University of the Philippines',
     date: 'February 5, 2025',
-    file: './src/assets/Certificate/Python Essentials I.pdf'
+    file: certPython
   },
 ];
 
@@ -408,7 +413,7 @@ export default function App() {
 
   const renderFilePreview = (filePath, altText) => {
     if (!filePath) return <div style={{ color: '#aaa', padding: '2rem', textAlign: 'center' }}>No preview media available</div>;
-    const isPdf = filePath.toLowerCase().endsWith('.pdf');
+    const isPdf = typeof filePath === 'string' && filePath.toLowerCase().endsWith('.pdf');
     if (isPdf) {
       return (
         <iframe 
@@ -764,7 +769,7 @@ export default function App() {
                 onClick={() => { setSelectedProject(proj); setActiveImageIdx(0); }}
               >
                 <div className="gallery_card_image_preview">
-                  {proj.files[0].toLowerCase().endsWith('.pdf') ? (
+                  {typeof proj.files[0] === 'string' && proj.files[0].toLowerCase().endsWith('.pdf') ? (
                     <iframe src={proj.files[0]} title={proj.title} className="card_iframe_preview" />
                   ) : (
                     <img src={proj.files[0]} alt={proj.title} />
@@ -806,7 +811,7 @@ export default function App() {
                   <div className="cert_dots"><span/><span/><span/></div>
                 </div>
                 <div className="cert_img_box">
-                  {cert.file.toLowerCase().endsWith('.pdf') ? (
+                  {typeof cert.file === 'string' && cert.file.toLowerCase().endsWith('.pdf') ? (
                     <iframe src={cert.file} title={cert.title} className="card_iframe_preview" />
                   ) : (
                     <img src={cert.file} alt={cert.title} />
@@ -861,7 +866,7 @@ export default function App() {
               <div className="award_highlight_card" key={award.title}>
                 {award.file ? (
                   <div className="award_media_thumb" onClick={() => setSelectedAward(award)}>
-                    {award.file.toLowerCase().endsWith('.pdf') ? (
+                    {typeof award.file === 'string' && award.file.toLowerCase().endsWith('.pdf') ? (
                       <iframe src={award.file} title={award.title} />
                     ) : (
                       <img src={award.file} alt={award.title} />
