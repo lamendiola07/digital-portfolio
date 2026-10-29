@@ -5,11 +5,6 @@ import ProfileCard from './components/ProfileCard';
 import TargetCursor from './components/TargetCursor';
 import profilePhoto from './assets/profile.jpg';
 
-// Vite helper to resolve local asset files dynamically for production builds
-const getAssetUrl = (path) => {
-  return new URL(path, import.meta.url).href;
-};
-
 const NAV_ITEMS = ['ABOUT', 'WORK', 'SKILLS', 'PROJECTS', 'CERTIFICATES', 'AWARDS', 'CONTACT'];
 
 const EDUCATION = [
@@ -210,8 +205,8 @@ const PROJECTS_DATA = [
     tags: ['Unity', 'Blender', 'C++', 'Firebase', 'Git'],
     year: '2026',
     files: [
-      getAssetUrl('./assets/Projects/RizalThroughPlay/RizalThroughPlay.png'),
-      getAssetUrl('./assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg')
+      '/assets/Projects/RizalThroughPlay/RizalThroughPlay.png',
+      '/assets/Projects/RizalThroughPlay/RTP_Ingame.jpeg'
     ]
   },
   {
@@ -229,10 +224,10 @@ const PROJECTS_DATA = [
     tags: ['PyGame', 'Arduino IDE', 'Ultrasonic Sensors'],
     year: '2026',
     files: [
-      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Logo.png'),
-      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Menu.png'),
-      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Demogorgon.png'),
-      getAssetUrl('./assets/Projects/DopplerThings/DopplerThings_Vecna.png')
+      '/assets/Projects/DopplerThings/DopplerThings_Logo.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Menu.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Demogorgon.png',
+      '/assets/Projects/DopplerThings/DopplerThings_Vecna.png'
     ]
   },
 ];
@@ -242,19 +237,19 @@ const CERTIFICATES_DATA = [
     title: 'Introduction to Software Testing',
     issuer: 'Simplilearn',
     date: 'October 11, 2026',
-    file: getAssetUrl('./assets/Certificate/SkillUP_Introduction to Software Testing.pdf')
+    file: '/assets/Certificate/SkillUP_Introduction to Software Testing.pdf'
   },
   {
     title: 'Introduction to Networks',
     issuer: 'Cisco Networking Academy',
     date: 'September 7, 2026',
-    file: getAssetUrl('./assets/Certificate/CCNA_Intro to Networking.pdf')
+    file: '/assets/Certificate/CCNA_Intro to Networking.pdf'
   },
   {
     title: 'Python Essentials I',
     issuer: 'Polytechnic University of the Philippines',
     date: 'February 5, 2025',
-    file: getAssetUrl('./assets/Certificate/Python Essentials I.pdf')
+    file: '/assets/Certificate/Python Essentials I.pdf'
   },
 ];
 
